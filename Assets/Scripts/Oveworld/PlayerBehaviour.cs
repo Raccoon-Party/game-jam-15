@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 3;
     private bool isMoving;
     private Animator animator;
+    private LayerMask solidObjectsLayer;
 
     // Start is called before the first frame update
     void Start()

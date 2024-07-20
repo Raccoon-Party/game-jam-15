@@ -11,6 +11,7 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] float slidingTime = 0.2f;
     [SerializeField] float slidingCooldown = 0.5f;
     float gravity;
+    private PlatformEffector2D platformEffector;
     bool isAlive = true;
     private bool canSlide = true;
     private bool isSliding;
@@ -29,12 +30,15 @@ public class PlayerBehavior : MonoBehaviour
         bodyCollider = GetComponent<CircleCollider2D>();
         feetCollider = GetComponent<CapsuleCollider2D>();
         gravity = rb.gravityScale;
+        platformEffector = GameObject.FindWithTag("JumpThroughPlatform").GetComponent<PlatformEffector2D>();
     }
 
     void Update()
     {
         if (isSliding)
         {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isSliding", true);
             return;
         }
         else
@@ -52,8 +56,10 @@ public class PlayerBehavior : MonoBehaviour
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Danger")))
         {
             isAlive = false;
-            animator.SetTrigger("isDead");
-            rb.velocity = new Vector2(0, 8f);
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isSliding", false);
+            animator.SetBool("isMoving", false);
+            animator.SetTrigger("death");
         }
     }
 
@@ -64,6 +70,12 @@ public class PlayerBehavior : MonoBehaviour
             return;
         }
         moveDirection = inputValue.Get<Vector2>();
+
+        if (moveDirection.y == -1)
+        {
+            platformEffector.surfaceArc = 0;
+            StartCoroutine(EnableJumpThroughPlatform());
+        }
     }
 
     void OnJump(InputValue inputValue)
@@ -73,13 +85,21 @@ public class PlayerBehavior : MonoBehaviour
             return;
         }
         bool isTouchingGround = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
-        if (isTouchingGround)
+        bool isOnThroughPlatform = feetCollider.IsTouchingLayers(LayerMask.GetMask("JumpThroughPlatform"));
+        if (isTouchingGround || isOnThroughPlatform)
         {
             if (inputValue.isPressed)
             {
                 rb.velocity += new Vector2(0, jumpHeight);
             }
+
         }
+    }
+
+    IEnumerator EnableJumpThroughPlatform()
+    {
+        yield return new WaitForSeconds(0.3f);
+        platformEffector.surfaceArc = 180;
     }
 
     void OnSlide(InputValue inputValue)
@@ -125,7 +145,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private void AnimateJumping()
     {
-        bool isTouchingGround = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+        bool isTouchingGround = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "JumpThroughPlatform"));
         if (!isTouchingGround && GetHasHeight())
         {
             animator.SetBool("isJumping", true);

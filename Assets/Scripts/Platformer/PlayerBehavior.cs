@@ -5,23 +5,54 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehavior : MonoBehaviour
 {
+
+    #region Serialized Fields
+    [Header("Run")]
     [SerializeField] float runSpeed = 5f;
-    [SerializeField] float jumpHeight = 10f;
-    [SerializeField] float slideSpeed = 2f;
+    [SerializeField] float drag = 0.6f;
+
+    [Header("Jump")]
+    [SerializeField] float jumpHeight = 12f;
+
+    [Header("Slide")]
+    [SerializeField] float slideSpeed = 10f;
     [SerializeField] float slidingTime = 0.2f;
     [SerializeField] float slidingCooldown = 0.5f;
+
+    #endregion
+
+    #region Private Properties
     float gravity;
     private PlatformEffector2D platformEffector;
     bool isAlive = true;
     private bool canSlide = true;
     private bool isSliding;
 
-    Vector2 moveDirection;
+    #endregion
 
+    #region Game Object Components
+
+    Vector2 moveDirection;
     Rigidbody2D rb;
     Animator animator;
     CircleCollider2D bodyCollider;
     CapsuleCollider2D feetCollider;
+    PlayerInput playerInput;
+
+    #endregion
+
+    #region Checks
+
+    private bool isGrounded => feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
+    private bool isOnThroughPlatform => feetCollider.IsTouchingLayers(LayerMask.GetMask("JumpThroughPlatform"));
+    //private bool isChangingDirection => (rb.velocity.x > 0f && moveDirection.x < 0f) || (rb.velocity.x < 0f && moveDirection.x > 0f);
+
+    private bool hasSpeed => Mathf.Abs(rb.velocity.x) > 0.01;
+    private bool hasHeight => Mathf.Abs(rb.velocity.y) > Mathf.Epsilon;
+
+    #endregion
+
+    #region Behavior Methods
 
     void Start()
     {
@@ -31,6 +62,8 @@ public class PlayerBehavior : MonoBehaviour
         feetCollider = GetComponent<CapsuleCollider2D>();
         gravity = rb.gravityScale;
         platformEffector = GameObject.FindWithTag("JumpThroughPlatform").GetComponent<PlatformEffector2D>();
+        playerInput = GetComponent<PlayerInput>();
+        playerInput.ActivateInput();
     }
 
     void Update()
@@ -45,23 +78,22 @@ public class PlayerBehavior : MonoBehaviour
         {
             rb.gravityScale = gravity;
         }
+        if (isGrounded || isOnThroughPlatform) canSlide = true;
 
-        Run(GetHasSpeed());
-        FlipSprite(GetHasSpeed());
+        Run();
+        FlipSprite();
         AnimateJumping();
         Die();
     }
-    private void Die()
+
+    private void FixedUpdate()
     {
-        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Danger")))
-        {
-            isAlive = false;
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isSliding", false);
-            animator.SetBool("isMoving", false);
-            animator.SetTrigger("death");
-        }
+        ApplyDrag();
     }
+
+    #endregion
+
+    #region Input Events
 
     void OnMove(InputValue inputValue)
     {
@@ -84,9 +116,8 @@ public class PlayerBehavior : MonoBehaviour
         {
             return;
         }
-        bool isTouchingGround = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground"));
-        bool isOnThroughPlatform = feetCollider.IsTouchingLayers(LayerMask.GetMask("JumpThroughPlatform"));
-        if (isTouchingGround || isOnThroughPlatform)
+
+        if (isGrounded || isOnThroughPlatform)
         {
             if (inputValue.isPressed)
             {
@@ -96,18 +127,8 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    IEnumerator EnableJumpThroughPlatform()
-    {
-        yield return new WaitForSeconds(0.3f);
-        platformEffector.surfaceArc = 180;
-    }
-
     void OnSlide(InputValue inputValue)
     {
-        if (!isAlive)
-        {
-            return;
-        }
         if (inputValue.isPressed && canSlide)
         {
             isSliding = true;
@@ -116,18 +137,52 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private void FlipSprite(bool hasSpeed)
+    #endregion
+
+    #region Helper Methods
+
+    private void ApplyDrag()
+    {
+        if (isGrounded || isOnThroughPlatform)
+        {
+            if (moveDirection.x == 0)
+                rb.velocity = new Vector2(rb.velocity.x * drag, rb.velocity.y);
+        }
+    }
+
+    private void Die()
+    {
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Danger")))
+        {
+            playerInput.DeactivateInput();
+
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isSliding", false);
+            animator.SetBool("isMoving", false);
+            animator.SetTrigger("death");
+        }
+    }
+
+    IEnumerator EnableJumpThroughPlatform()
+    {
+        yield return new WaitForSeconds(0.3f);
+        platformEffector.surfaceArc = 180;
+    }
+
+    private void FlipSprite()
     {
         if (hasSpeed)
             transform.localScale = new Vector2(Mathf.Sign(rb.velocity.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y);
-
     }
 
-    private void Run(bool hasSpeed)
+    private void Run()
     {
         bool canClimb = bodyCollider.IsTouchingLayers(LayerMask.GetMask("Climbing"));
         float velocity_y = canClimb ? 0 : rb.velocity.y;
-        rb.velocity = new Vector2(moveDirection.x * runSpeed, velocity_y);
+        if (moveDirection.x != 0)
+        {
+            rb.velocity = new Vector2(moveDirection.x * runSpeed, velocity_y);
+        }
         if (hasSpeed)
         {
             animator.SetBool("isMoving", true);
@@ -138,15 +193,10 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private bool GetHasSpeed()
-    {
-        return Mathf.Abs(rb.velocity.x) > Mathf.Epsilon;
-    }
 
     private void AnimateJumping()
     {
-        bool isTouchingGround = feetCollider.IsTouchingLayers(LayerMask.GetMask("Ground", "JumpThroughPlatform"));
-        if (!isTouchingGround && GetHasHeight())
+        if (!isGrounded && !isOnThroughPlatform && hasHeight)
         {
             animator.SetBool("isJumping", true);
         }
@@ -155,10 +205,7 @@ public class PlayerBehavior : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
     }
-    private bool GetHasHeight()
-    {
-        return Mathf.Abs(rb.velocity.y) > Mathf.Epsilon;
-    }
+
     private IEnumerator Dash()
     {
         canSlide = false;
@@ -172,6 +219,8 @@ public class PlayerBehavior : MonoBehaviour
         isSliding = false;
         animator.SetBool("isSliding", false);
         yield return new WaitForSeconds(slidingCooldown);
-        canSlide = true;
+        if (isGrounded || isOnThroughPlatform) canSlide = true;
     }
+
+    #endregion
 }

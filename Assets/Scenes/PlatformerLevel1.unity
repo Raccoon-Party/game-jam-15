@@ -13915,11 +13915,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7299963414700369143, guid: 50adba0460073aa499bad81433f40d7e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 112.46543
+      value: -29.474571
       objectReference: {fileID: 0}
     - target: {fileID: 7299963414700369143, guid: 50adba0460073aa499bad81433f40d7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6771145
+      value: -5.7271147
       objectReference: {fileID: 0}
     - target: {fileID: 7299963414700369143, guid: 50adba0460073aa499bad81433f40d7e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14581,7 +14581,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: ecb03a3744e7e464d85f1950bc09741c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -14654,7 +14654,7 @@ Transform:
   m_GameObject: {fileID: 1727958163}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.3, y: 2.7, z: 0.118450865}
+  m_LocalPosition: {x: -26.64, y: -1.35, z: 0.118450865}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14726,6 +14726,8 @@ MonoBehaviour:
   runSpeed: 5
   drag: 0.6
   jumpHeight: 12
+  coyoteTime: 0.2
+  jumpGravity: 5
   slideSpeed: 15
   slidingTime: 0.2
   slidingCooldown: 0.5
@@ -22948,7 +22950,7 @@ Transform:
   m_GameObject: {fileID: 1940409245}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.3, y: 2.7000003, z: -9.881549}
+  m_LocalPosition: {x: -19.035425, y: 1.18477, z: -9.881549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

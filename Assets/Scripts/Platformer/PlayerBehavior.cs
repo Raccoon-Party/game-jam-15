@@ -13,6 +13,8 @@ public class PlayerBehavior : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] float jumpHeight = 12f;
+    [SerializeField] float coyoteTime = 0.2f;
+    [SerializeField] float jumpGravity = 5f;
 
     [Header("Slide")]
     [SerializeField] float slideSpeed = 10f;
@@ -22,11 +24,13 @@ public class PlayerBehavior : MonoBehaviour
     #endregion
 
     #region Private Properties
-    float gravity;
+    private float gravity;
     private PlatformEffector2D platformEffector;
-    bool isAlive = true;
+    private bool isAlive = true;
     private bool canSlide = true;
     private bool isSliding;
+    private bool isJumping;
+    private float coyoteTimeCounter;
 
     #endregion
 
@@ -60,7 +64,7 @@ public class PlayerBehavior : MonoBehaviour
         animator = GetComponent<Animator>();
         bodyCollider = GetComponent<CircleCollider2D>();
         feetCollider = GetComponent<CapsuleCollider2D>();
-        gravity = rb.gravityScale;
+        gravity = 3;
         platformEffector = GameObject.FindWithTag("JumpThroughPlatform").GetComponent<PlatformEffector2D>();
         playerInput = GetComponent<PlayerInput>();
         playerInput.ActivateInput();
@@ -116,14 +120,11 @@ public class PlayerBehavior : MonoBehaviour
         {
             return;
         }
+        isJumping = inputValue.isPressed;
 
-        if (isGrounded || isOnThroughPlatform)
+        if (coyoteTimeCounter > 0f && isJumping)
         {
-            if (inputValue.isPressed)
-            {
-                rb.velocity += new Vector2(0, jumpHeight);
-            }
-
+            rb.velocity += new Vector2(0, jumpHeight);
         }
     }
 
@@ -196,6 +197,25 @@ public class PlayerBehavior : MonoBehaviour
 
     private void AnimateJumping()
     {
+        if (isGrounded || isOnThroughPlatform)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+
+        if (!isJumping && hasHeight)
+        {
+            rb.gravityScale = jumpGravity;
+        }
+        else
+        {
+            rb.gravityScale = gravity;
+        }
+
+
         if (!isGrounded && !isOnThroughPlatform && hasHeight)
         {
             animator.SetBool("isJumping", true);
@@ -211,7 +231,6 @@ public class PlayerBehavior : MonoBehaviour
         canSlide = false;
         isSliding = true;
         animator.SetBool("isSliding", true);
-        gravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * slideSpeed, 0f);
         yield return new WaitForSeconds(slidingTime);

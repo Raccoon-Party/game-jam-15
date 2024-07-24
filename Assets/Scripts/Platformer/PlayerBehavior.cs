@@ -31,6 +31,7 @@ public class PlayerBehavior : MonoBehaviour
     private bool isSliding;
     private bool isJumping;
     private float coyoteTimeCounter;
+    private bool hasJumped = false;
 
     #endregion
 
@@ -122,8 +123,9 @@ public class PlayerBehavior : MonoBehaviour
         }
         isJumping = inputValue.isPressed;
 
-        if (coyoteTimeCounter > 0f && isJumping)
+        if (coyoteTimeCounter > 0f && isJumping && !hasJumped)
         {
+            hasJumped = true;
             rb.velocity += new Vector2(0, jumpHeight);
         }
     }
@@ -161,6 +163,8 @@ public class PlayerBehavior : MonoBehaviour
             animator.SetBool("isSliding", false);
             animator.SetBool("isMoving", false);
             animator.SetTrigger("death");
+
+            FindObjectOfType<GameSession>().ProcessPlayerDeath();
         }
     }
 
@@ -199,6 +203,7 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (isGrounded || isOnThroughPlatform)
         {
+            hasJumped = false;
             coyoteTimeCounter = coyoteTime;
         }
         else
@@ -206,13 +211,16 @@ public class PlayerBehavior : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (!isJumping && hasHeight)
+        if (!isSliding)
         {
-            rb.gravityScale = jumpGravity;
-        }
-        else
-        {
-            rb.gravityScale = gravity;
+            if (!isJumping && hasHeight)
+            {
+                rb.gravityScale = jumpGravity;
+            }
+            else
+            {
+                rb.gravityScale = gravity;
+            }
         }
 
 
@@ -232,7 +240,7 @@ public class PlayerBehavior : MonoBehaviour
         isSliding = true;
         animator.SetBool("isSliding", true);
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * slideSpeed, 0f);
+        rb.velocity = new Vector2(Mathf.Sign(transform.localScale.x) * slideSpeed, 0f);
         yield return new WaitForSeconds(slidingTime);
         rb.gravityScale = gravity;
         isSliding = false;

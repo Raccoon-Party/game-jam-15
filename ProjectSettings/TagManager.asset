@@ -51,9 +51,9 @@ TagManager:
   - name: Platforms
     uniqueID: 4233313861
     locked: 0
-  - name: Player
-    uniqueID: 141511773
-    locked: 0
   - name: Objects
     uniqueID: 3625095275
+    locked: 0
+  - name: Player
+    uniqueID: 141511773
     locked: 0

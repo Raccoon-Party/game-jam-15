@@ -12,13 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float speed = 3;
     private bool isMoving;
     private Animator animator;
-    public LayerMask solidObjectsLayer;
+
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -29,19 +31,13 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        Vector3 targetPosition = transform.position + new Vector3(moveDirection.x * speed, moveDirection.y * speed) * Time.deltaTime;
+        // Vector3 targetPosition = transform.position + new Vector3(moveDirection.x * speed, moveDirection.y * speed) * Time.deltaTime;
+        // transform.position = targetPosition;
+        rb.velocity = new Vector2(moveDirection.x * speed, moveDirection.y * speed);
 
-        if (IsWalkable(targetPosition))
+        if (moveDirection.x != 0 || moveDirection.y != 0)
         {
-            transform.position = targetPosition;
-            if (moveDirection.x != 0 || moveDirection.y != 0)
-            {
-                animator.SetBool("isMoving", true);
-            }
-            else
-            {
-                animator.SetBool("isMoving", false);
-            }
+            animator.SetBool("isMoving", true);
         }
         else
         {
@@ -63,12 +59,5 @@ public class PlayerController : MonoBehaviour
         animator.SetFloat("moveY", moveDirection.y);
         animator.SetBool("isMoving", isMoving);
         Debug.Log(moveDirection);
-    }
-
-    private bool IsWalkable(Vector3 targetPosition)
-    {
-        if (Physics2D.OverlapCircle(targetPosition, 0.2f, solidObjectsLayer) != null)
-            return false;
-        else return true;
     }
 }

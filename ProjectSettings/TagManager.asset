@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - JumpThroughPlatform
+  - BulletDespawner
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Player
   - Exit
   - Enemy
-  - 
-  - 
+  - Projectile
+  - ShadowEnemy
   - 
   - 
   - 

@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class ProjectileBehavior : MonoBehaviour
 {
-    [SerializeField] float firingSpeed = 3f;
+    [SerializeField] public float firingSpeed = 3f;
     Rigidbody2D rb;
-    ShadowEnemyBehavior shadowEnemy;
-    float xDirection;
-
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        shadowEnemy = FindObjectOfType<ShadowEnemyBehavior>();
-        xDirection = shadowEnemy.transform.localScale.x;
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        rb.velocity = new Vector2(Mathf.Sign(xDirection) * Random.Range(0f * firingSpeed, 1f * firingSpeed), Random.Range(0f * firingSpeed, 1f * firingSpeed));
         FlipSprite();
     }
 
@@ -33,8 +27,12 @@ public class ProjectileBehavior : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerBehavior>().Die();
+            other.gameObject.GetComponent<PlayerBehavior>().KillPlayer();
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        if (other.tag == "BulletDespawner")
+        {
+            Destroy(gameObject);
+        }
     }
 }

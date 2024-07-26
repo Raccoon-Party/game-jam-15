@@ -40,8 +40,8 @@ public class PlayerBehavior : MonoBehaviour
     Vector2 moveDirection;
     Rigidbody2D rb;
     Animator animator;
-    CircleCollider2D bodyCollider;
-    CapsuleCollider2D feetCollider;
+    PolygonCollider2D bodyCollider;
+    BoxCollider2D feetCollider;
     PlayerInput playerInput;
 
     #endregion
@@ -63,8 +63,8 @@ public class PlayerBehavior : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        bodyCollider = GetComponent<CircleCollider2D>();
-        feetCollider = GetComponent<CapsuleCollider2D>();
+        bodyCollider = GetComponent<PolygonCollider2D>();
+        feetCollider = GetComponent<BoxCollider2D>();
         gravity = 3;
         platformEffector = GameObject.FindWithTag("JumpThroughPlatform").GetComponent<PlatformEffector2D>();
         playerInput = GetComponent<PlayerInput>();
@@ -102,7 +102,7 @@ public class PlayerBehavior : MonoBehaviour
 
     void OnMove(InputValue inputValue)
     {
-        if (!isAlive)
+        if (!isAlive || isSliding)
         {
             return;
         }
@@ -157,15 +157,20 @@ public class PlayerBehavior : MonoBehaviour
     {
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Danger")))
         {
-            playerInput.DeactivateInput();
-
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isSliding", false);
-            animator.SetBool("isMoving", false);
-            animator.SetTrigger("death");
-
-            FindObjectOfType<GameSession>().ProcessPlayerDeath();
+            KillPlayer();
         }
+    }
+
+    public void KillPlayer()
+    {
+        playerInput.DeactivateInput();
+
+        animator.SetBool("isJumping", false);
+        animator.SetBool("isSliding", false);
+        animator.SetBool("isMoving", false);
+        animator.SetTrigger("death");
+
+        FindObjectOfType<GameSession>().ProcessPlayerDeath();
     }
 
     IEnumerator EnableJumpThroughPlatform()
@@ -245,6 +250,7 @@ public class PlayerBehavior : MonoBehaviour
         rb.gravityScale = gravity;
         isSliding = false;
         animator.SetBool("isSliding", false);
+        rb.velocity = new Vector2(rb.velocity.x / slideSpeed, rb.velocity.y);
         yield return new WaitForSeconds(slidingCooldown);
         if (isGrounded || isOnThroughPlatform) canSlide = true;
     }

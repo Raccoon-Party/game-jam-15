@@ -8,12 +8,19 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput;
+
     Vector2 moveDirection;
+
     [SerializeField] float speed = 3;
+
     private bool isMoving;
+
     private Animator animator;
 
     private Rigidbody2D rb;
+
+    public LayerMask interactablesLayer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +34,19 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Interact();
+        }
+    }
+
+    void Interact()
+    {
+        var collider = Physics2D.OverlapCircle(transform.position, 0.2f, interactablesLayer);
+        if (collider != null)
+        {
+            collider.GetComponent<Interactables>()?.Interact();
+        }
     }
 
     void Move()

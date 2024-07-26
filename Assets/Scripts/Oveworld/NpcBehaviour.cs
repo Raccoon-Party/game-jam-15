@@ -5,9 +5,11 @@ using UnityEngine;
 public class NpcController : MonoBehaviour, Interactables
 {
     [SerializeField] Dialog dialog;
+
+    int currentLine = 0;
     public void Interact()
     {
-        throw new System.NotImplementedException();
+        DialogManager.Instance.HandleUpdate(dialog);
     }
 
     // Start is called before the first frame update

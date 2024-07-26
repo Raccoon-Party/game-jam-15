@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class PlayerController : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour
 {
     PlayerInput playerInput;
 
@@ -31,10 +31,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Move();
-        if (Input.GetKeyDown(KeyCode.E))
+    }
+
+    void OnInteract(InputValue inputValue)
+    {
+        if (inputValue.isPressed)
         {
             Interact();
         }

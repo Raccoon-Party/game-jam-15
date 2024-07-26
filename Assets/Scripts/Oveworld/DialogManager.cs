@@ -17,7 +17,6 @@ public class DialogManager : MonoBehaviour
 
     public event Action OnHideDialog;
 
-    Dialog dialog;
     int currentLine = 0;
 
     bool isTyping;
@@ -27,14 +26,19 @@ public class DialogManager : MonoBehaviour
         Instance = this;
     }
 
-    public void HandleUpdate()
+    public void HandleUpdate(Dialog dialog)
     {
-        if (Input.GetKeyUp(KeyCode.Z) && !isTyping)
+        if (!isTyping)
         {
-            ++currentLine;
-            if (currentLine < dialog.Lines.Count)
+            if (currentLine == 0)
+            {
+                StartCoroutine(ShowDialog(dialog));
+                currentLine++;
+            }
+            else if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
+                currentLine++;
             }
             else
             {
@@ -51,7 +55,6 @@ public class DialogManager : MonoBehaviour
 
         OnShowDialog?.Invoke();
 
-        this.dialog = dialog;
         dialogBox.SetActive(true);
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }

@@ -153,7 +153,7 @@ public class PlayerBehavior : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void Die()
     {
         if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Danger")))
         {

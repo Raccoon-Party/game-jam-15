@@ -14,6 +14,7 @@ public class GameSession : MonoBehaviour
     private void Awake()
     {
         int numSessions = FindObjectsOfType<GameSession>().Length;
+        gameStateInfo = new GameStateInfo();
         if (numSessions > 1)
         {
             Destroy(gameObject);
@@ -70,7 +71,7 @@ public class GameSession : MonoBehaviour
 
     public Vector2 GetSavedOverworldPosition()
     {
-        return gameStateInfo.OverworldPosition;
+        return gameStateInfo.OverworldPosition != null ? gameStateInfo.OverworldPosition : GameStateInfo._defaultPosition;
     }
 
 }

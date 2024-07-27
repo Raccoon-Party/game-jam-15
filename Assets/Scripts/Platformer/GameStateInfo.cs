@@ -15,4 +15,5 @@ public class GameStateInfo
         deathCounter = 0;
         OverworldPosition = new Vector2(-8.0f, 0.1f);
     }
+    public static Vector2 _defaultPosition = new Vector2(-8.0f, 0.1f);
 }

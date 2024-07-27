@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public enum GameState
@@ -14,6 +15,8 @@ public class GameController : MonoBehaviour
     PlayerBehaviour playerBehaviour;
 
     GameState state;
+
+    bool isInOverworld => SceneManager.GetActiveScene().buildIndex == SceneManager.GetSceneByName("Overworld").buildIndex;
 
     public void Start()
     {
@@ -31,18 +34,21 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        switch (state)
+        if (isInOverworld)
         {
-            case GameState.FreeRoam:
-                playerBehaviour.GetComponent<PlayerInput>().actions.FindAction("Move").Enable();
-                break;
+            switch (state)
+            {
+                case GameState.FreeRoam:
+                    playerBehaviour.GetComponent<PlayerInput>().actions.FindAction("Move").Enable();
+                    break;
 
-            case GameState.Dialog:
-                playerBehaviour.GetComponent<PlayerInput>().actions.FindAction("Move").Disable();
-                break;
+                case GameState.Dialog:
+                    playerBehaviour.GetComponent<PlayerInput>().actions.FindAction("Move").Disable();
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
 }

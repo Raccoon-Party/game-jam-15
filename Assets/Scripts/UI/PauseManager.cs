@@ -13,7 +13,7 @@ public class PauseManager : MonoBehaviour
 
     private void Awake()
     {
-        playerInput = FindObjectOfType<PlayerInput>();
+        playerInput = FindAnyObjectByType<PlayerInput>();
     }
 
     public void Pause()

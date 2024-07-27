@@ -86,6 +86,5 @@ public class PlayerBehaviour : MonoBehaviour
         if (moveDirection.y != 0) moveDirection.x = 0;
         animator.SetFloat("moveY", moveDirection.y);
         animator.SetBool("isMoving", isMoving);
-        Debug.Log(moveDirection);
     }
 }

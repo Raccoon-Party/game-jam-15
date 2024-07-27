@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class NpcController : MonoBehaviour, Interactables
+public class NpcBehaviour : MonoBehaviour, Interactables
 {
     [SerializeField] Dialog dialog;
+
+    // [SerializeField] TMP_Text speakerName;
+
+    // [SerializeField] string[] speaker;
+
+    // [SerializeField] Image portraitImage;
+
+    // [SerializeField] Sprite[] portrait;
 
     public void Interact()
     {

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3106282961025336204}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.33, y: 0.71, z: 0}
+  m_LocalPosition: {x: 24.6, y: 0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,7 +155,7 @@ GameObject:
   - component: {fileID: 7072634309392885537}
   - component: {fileID: 3403941660953073736}
   m_Layer: 8
-  m_Name: circle1
+  m_Name: EntryLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62f74d77bfbb06141bb4a3b3a837182e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: PlatformerLevel1
+  levelName: PlatformerLevel2
 --- !u!70 &3403941660953073736
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0000000014893704, y: 0.021914402}

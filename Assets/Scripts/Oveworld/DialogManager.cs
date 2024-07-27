@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class DialogManager : MonoBehaviour
 {
     [SerializeField] GameObject dialogBox;
 
-    [SerializeField] Text dialogText;
+    [SerializeField] TextMeshProUGUI dialogText;
 
     [SerializeField] int lettersPerSecond;
 

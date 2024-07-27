@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI deathText;
+    [SerializeField] GameObject dogInfoPanel;
 
     float deathCounter = 0;
 
@@ -50,6 +51,15 @@ public class GameSession : MonoBehaviour
         deathCounter++;
         deathText.SetText($"Deaths: {deathCounter}");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ShowDogInfoPanel()
+    {
+        dogInfoPanel.SetActive(true);
+    }
+    public void HideDogInfoPanel()
+    {
+        dogInfoPanel.SetActive(false);
     }
 
 }

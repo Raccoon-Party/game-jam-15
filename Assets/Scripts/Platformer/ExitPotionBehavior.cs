@@ -20,10 +20,10 @@ public class ExitPotionBehavior : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {
-        UIPopup.SetActive(true);
+        FindObjectOfType<GameSession>().ShowDogInfoPanel();
         Time.timeScale = 0;
         yield return new WaitForSecondsRealtime(levelLoadDelay);
-        UIPopup.SetActive(false);
+        FindObjectOfType<GameSession>().HideDogInfoPanel();
         Time.timeScale = 1;
         if (SceneManager.GetSceneByName(nextLevel) != null)
         {

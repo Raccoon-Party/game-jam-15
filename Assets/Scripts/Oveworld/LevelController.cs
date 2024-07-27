@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour, Interactables
 
     public void Interact()
     {
+        FindObjectOfType<GameSession>().SaveOverworldPosition(FindObjectOfType<PlayerBehaviour>().transform.position);
         SceneManager.LoadScene(levelName);
 
         Debug.Log("Load Level" + levelName);

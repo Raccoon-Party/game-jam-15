@@ -28,6 +28,10 @@ public class PlayerBehaviour : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        var gameSession = FindObjectOfType<GameSession>();
+        if (gameSession != null && gameSession != default)
+            transform.position = gameSession.GetSavedOverworldPosition();
     }
 
     // Update is called once per frame

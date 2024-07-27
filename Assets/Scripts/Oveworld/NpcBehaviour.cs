@@ -6,7 +6,6 @@ public class NpcController : MonoBehaviour, Interactables
 {
     [SerializeField] Dialog dialog;
 
-    int currentLine = 0;
     public void Interact()
     {
         DialogManager.Instance.HandleUpdate(dialog);

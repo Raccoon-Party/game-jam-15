@@ -9,7 +9,7 @@ public class GameSession : MonoBehaviour
     [SerializeField] TextMeshProUGUI deathText;
     [SerializeField] GameObject dogInfoPanel;
 
-    float deathCounter = 0;
+    private GameStateInfo gameStateInfo;
 
     private void Awake()
     {
@@ -25,7 +25,8 @@ public class GameSession : MonoBehaviour
     }
     private void Start()
     {
-        deathText.SetText($"Deaths: {deathCounter}");
+        gameStateInfo = new GameStateInfo();
+        deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
     }
 
     private void Update()
@@ -48,8 +49,8 @@ public class GameSession : MonoBehaviour
 
     private void TakeLife()
     {
-        deathCounter++;
-        deathText.SetText($"Deaths: {deathCounter}");
+        gameStateInfo.deathCounter++;
+        deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -60,6 +61,16 @@ public class GameSession : MonoBehaviour
     public void HideDogInfoPanel()
     {
         dogInfoPanel.SetActive(false);
+    }
+
+    public void SaveOverworldPosition(Vector2 position)
+    {
+        gameStateInfo.OverworldPosition = position;
+    }
+
+    public Vector2 GetSavedOverworldPosition()
+    {
+        return gameStateInfo.OverworldPosition;
     }
 
 }

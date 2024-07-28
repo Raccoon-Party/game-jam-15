@@ -16020,6 +16020,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2497794495967354352, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.46875
+      objectReference: {fileID: 0}
     - target: {fileID: 2634986326477226313, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -16041,12 +16045,24 @@ PrefabInstance:
       value: Caytlin
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
+      propertyPath: dialog.SpeakerName
+      value: Caytlin Meowner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
+      propertyPath: dialog.SpeakerSprite
+      value: 
+      objectReference: {fileID: 1604204906, guid: 8ade31930f9144c40b80432814201702, type: 3}
+    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[1]
-      value: 
+      value: Are you the negotiator?
+      objectReference: {fileID: 0}
+    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
+      propertyPath: dialog.lines.Array.data[2]
+      value: It's hard to recognize people with their new forms...
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16070,7 +16086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &306670747
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16283,8 +16299,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 195, y: 23}
-  m_SizeDelta: {x: 310, y: 40}
+  m_AnchoredPosition: {x: 160.29343, y: 22.5}
+  m_SizeDelta: {x: 240.5869, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &386878813
 MonoBehaviour:
@@ -16657,6 +16673,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogBox: {fileID: 306670746}
   dialogText: {fileID: 719035885}
+  speakerNameText: {fileID: 1265243537}
+  speakerSpriteImage: {fileID: 1670211883}
   lettersPerSecond: 40
 --- !u!1001 &713513376
 PrefabInstance:
@@ -16839,7 +16857,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -234.52502, y: 0, z: 410.96936, w: 0}
+  m_margin: {x: -224.07568, y: 9.702881, z: 413.95483, w: 10.449326}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -22692,42 +22710,6 @@ PrefabInstance:
     - target: {fileID: 3525383221008569533, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: m_Name
       value: Felix
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: speakerName
-      value: 
-      objectReference: {fileID: 1265243537}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: portraitImage
-      value: 
-      objectReference: {fileID: 1670211883}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: speaker.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: portrait.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: speaker.Array.data[0]
-      value: Felix
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: portrait.Array.data[0]
-      value: 
-      objectReference: {fileID: 521845140, guid: 81666d7f3903a194a8b169e604f1453c, type: 3}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: speakerName.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
-      propertyPath: speakerName.Array.data[0]
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

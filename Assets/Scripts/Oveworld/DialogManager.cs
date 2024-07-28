@@ -10,6 +10,10 @@ public class DialogManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI dialogText;
 
+    [SerializeField] TextMeshProUGUI speakerNameText;
+
+    [SerializeField] Image speakerSpriteImage;
+
     [SerializeField] int lettersPerSecond;
 
     public static DialogManager Instance { get; private set; }
@@ -57,6 +61,10 @@ public class DialogManager : MonoBehaviour
         OnShowDialog?.Invoke();
 
         dialogBox.SetActive(true);
+
+        speakerNameText.text = dialog.SpeakerName;
+        speakerSpriteImage.sprite = dialog.SpeakerSprite;
+
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
 

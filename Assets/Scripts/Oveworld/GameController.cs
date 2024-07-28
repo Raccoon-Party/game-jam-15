@@ -27,7 +27,9 @@ public class GameController : MonoBehaviour
         DialogManager.Instance.OnHideDialog += () =>
         {
             if (state == GameState.Dialog)
+            {
                 state = GameState.FreeRoam;
+            }
         };
         playerBehaviour = FindObjectOfType<PlayerBehaviour>();
     }

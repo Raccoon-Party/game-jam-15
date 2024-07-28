@@ -31,7 +31,7 @@ public class DialogManager : MonoBehaviour
         Instance = this;
     }
 
-    public void HandleUpdate(Dialog dialog)
+    public bool HandleUpdate(Dialog dialog)
     {
         if (!isTyping)
         {
@@ -39,19 +39,23 @@ public class DialogManager : MonoBehaviour
             {
                 StartCoroutine(ShowDialog(dialog));
                 currentLine++;
+                return false;
             }
             else if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
                 currentLine++;
+                return false;
             }
             else
             {
                 dialogBox.SetActive(false);
                 currentLine = 0;
                 OnHideDialog?.Invoke();
+                return true;
             }
         }
+        return false;
     }
 
     public IEnumerator ShowDialog(Dialog dialog)

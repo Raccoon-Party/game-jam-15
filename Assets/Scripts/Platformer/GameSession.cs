@@ -8,6 +8,7 @@ public class GameSession : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI deathText;
     [SerializeField] GameObject dogInfoPanel;
+    [SerializeField] GameObject crystalInfoPanel;
 
     private GameStateInfo gameStateInfo;
 
@@ -64,6 +65,17 @@ public class GameSession : MonoBehaviour
     {
         dogInfoPanel.SetActive(false);
     }
+
+    public void ShowCrystalInfoPanel(string crystal)
+    {
+        crystalInfoPanel.SetActive(true);
+        gameStateInfo.UnlockedCrystals.Add(crystal);
+    }
+    public void HideCrystalInfoPanel()
+    {
+        crystalInfoPanel.SetActive(false);
+    }
+
 
     public void SaveOverworldPosition(Vector2 position)
     {

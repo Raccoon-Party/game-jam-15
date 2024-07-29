@@ -36,9 +36,15 @@ public class ShadowEnemyBehavior : MonoBehaviour
         animator.SetBool("isAttacking", true);
         yield return new WaitForSeconds(0.3f);
         projectile = Instantiate(projectile, projectileSpawner.position, transform.rotation);
-        Vector2 direction = player.transform.position - projectileSpawner.position;
-        direction.Normalize();
-        projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<ProjectileBehavior>().firingSpeed;
+        if (projectile != null)
+        {
+            if (player != null)
+            {
+                Vector2 direction = player.transform.position - projectileSpawner.position;
+                direction.Normalize();
+                projectile.GetComponent<Rigidbody2D>().velocity = direction * projectile.GetComponent<ProjectileBehavior>().firingSpeed;
+            }
+        }
         yield return new WaitForSeconds(fireCooldown);
         animator.SetBool("isAttacking", false);
         isFiring = false;

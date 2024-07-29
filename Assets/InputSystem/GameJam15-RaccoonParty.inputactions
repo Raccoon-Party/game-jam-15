@@ -42,13 +42,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Slide",
-                    "type": "Button",
+                    "name": "SpecialAction",
+                    "type": "Value",
                     "id": "a3dc4480-d405-4804-a98a-06061cf9d703",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Pause",
@@ -60,13 +60,22 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "interact",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "f48c953c-d3dd-4fc0-b0e5-4c0137234dab",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchCharacter",
+                    "type": "Button",
+                    "id": "b0f7cd63-5e4c-47ca-af00-b67659cccb4e",
+                    "expectedControlType": "Button",
+                    "processors": "Scale",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -308,7 +317,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slide",
+                    "action": "SpecialAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -352,7 +361,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "interact",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2e49e850-df55-4e52-bbcb-99742f921e32",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "Scale",
+                    "groups": "",
+                    "action": "SwitchCharacter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "91221366-867f-4a6b-8c37-4b4848c9243c",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "Scale(factor=2)",
+                    "groups": "",
+                    "action": "SwitchCharacter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

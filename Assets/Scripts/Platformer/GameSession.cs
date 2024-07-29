@@ -27,12 +27,12 @@ public class GameSession : MonoBehaviour
     private void Start()
     {
         gameStateInfo = new GameStateInfo();
+        UnlockAnimal("dog");
         deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
     }
 
     private void Update()
     {
-
     }
 
     public void ProcessPlayerDeath()
@@ -58,6 +58,7 @@ public class GameSession : MonoBehaviour
     public void ShowDogInfoPanel()
     {
         dogInfoPanel.SetActive(true);
+        UnlockAnimal("dog");
     }
     public void HideDogInfoPanel()
     {
@@ -72,6 +73,28 @@ public class GameSession : MonoBehaviour
     public Vector2 GetSavedOverworldPosition()
     {
         return gameStateInfo.OverworldPosition != null ? gameStateInfo.OverworldPosition : GameStateInfo._defaultPosition;
+    }
+
+    public void CompleteLevel(string name)
+    {
+        gameStateInfo.CompletedLevels.Add(name);
+    }
+    public void UnlockAnimal(string animalName)
+    {
+        gameStateInfo.UnlockedAnimals.Add(animalName);
+    }
+
+    public bool IsAnimalUnlocked(int animalId)
+    {
+        switch (animalId)
+        {
+            case 1:
+                return true;
+            case 2:
+                return gameStateInfo.UnlockedAnimals.Contains("dog");
+            default:
+                return false;
+        };
     }
 
 }

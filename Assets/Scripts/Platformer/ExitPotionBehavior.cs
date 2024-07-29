@@ -9,10 +9,13 @@ public class ExitPotionBehavior : MonoBehaviour
     [SerializeField] string nextLevel = "";
     [SerializeField] GameObject UIPopup;
 
+    [SerializeField] string potionType;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
+            FindObjectOfType<GameSession>().CompleteLevel(SceneManager.GetActiveScene().name);
             StartCoroutine(LoadNextLevel());
             //FindObjectOfType<ScenePersist>().ResetScenePersist();
         }

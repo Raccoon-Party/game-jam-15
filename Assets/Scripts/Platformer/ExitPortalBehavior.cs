@@ -12,6 +12,8 @@ public class ExitPortalBehavior : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            FindObjectOfType<GameSession>().CompleteLevel(SceneManager.GetActiveScene().name);
+
             StartCoroutine(LoadNextLevel());
             //FindObjectOfType<ScenePersist>().ResetScenePersist();
         }

@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &69872493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4519,6 +4519,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 434264063796889255, guid: bda857ec59f8e0e4ba861b7a489716be, type: 3}
   m_PrefabInstance: {fileID: 3105365316630284053}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1208726938
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.9342766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.592699
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.27201247
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6475046761497984957, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628522761961394670, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
+      propertyPath: m_Name
+      value: GameController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4d66141e5b06e4f4795858e856a64bb5, type: 3}
 --- !u!114 &1265243537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1300654487223649896, guid: b9216b1cdd1ca0d4fa460b3564f6fdfd, type: 3}
@@ -4628,7 +4685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.SpeakerName
-      value: "Frank Fu\xDFb\xE4r"
+      value: Frank Fussbear
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.SpeakerSprite
@@ -5338,3 +5395,4 @@ SceneRoots:
   - {fileID: 69872495}
   - {fileID: 6326447278954189506}
   - {fileID: 1321630879}
+  - {fileID: 1208726938}

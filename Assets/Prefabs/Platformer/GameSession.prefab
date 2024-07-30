@@ -660,7 +660,7 @@ MonoBehaviour:
   deathText: {fileID: 4980916542596275122}
   dogInfoPanel: {fileID: 6140580471878050151}
   crystalInfoPanel: {fileID: 2635932169054744214}
-  fileName: 
+  fileName: save
   useEncryption: 0
 --- !u!1 &1316199664091546308
 GameObject:
@@ -701,7 +701,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -66, y: -22}
+  m_AnchoredPosition: {x: 24.121094, y: -22}
   m_SizeDelta: {x: -1063.5922, y: -376.2365}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6470737525543893217
@@ -859,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 24.120972, y: 14.81311}
+  m_AnchoredPosition: {x: 24.121094, y: 14.81311}
   m_SizeDelta: {x: 1170.3, y: 315.748}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8634833762307685180

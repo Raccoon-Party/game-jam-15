@@ -42,6 +42,7 @@ public class PauseManager : MonoBehaviour
     {
         Save();
         Resume();
+        FindObjectOfType<GameSession>().HideUI();
         SceneManager.LoadScene("MainMenu");
     }
 

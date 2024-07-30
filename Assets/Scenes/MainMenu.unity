@@ -286,21 +286,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSession
       objectReference: {fileID: 0}
-    - target: {fileID: 1316199664091546308, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
+    - target: {fileID: 3495812237672061934, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3396934961191858441, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 24.121094
-      objectReference: {fileID: 0}
-    - target: {fileID: 4054385823559103607, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 24.121094
-      objectReference: {fileID: 0}
-    - target: {fileID: 6184737479036807757, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
-      propertyPath: fileName
-      value: save
       objectReference: {fileID: 0}
     - target: {fileID: 7796144527883125284, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
       propertyPath: m_LocalPosition.x

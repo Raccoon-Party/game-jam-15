@@ -35,6 +35,7 @@ public class GameSession : MonoBehaviour
     private void Start()
     {
         deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
+        UnlockAnimal("dog");
     }
 
     private void Update()
@@ -119,6 +120,7 @@ public class GameSession : MonoBehaviour
     public void NewGame()
     {
         gameStateInfo = new GameStateInfo();
+        ShowUI();
     }
 
     public void LoadGame()
@@ -132,6 +134,7 @@ public class GameSession : MonoBehaviour
         }
         else
         {
+            ShowUI();
             deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
             SceneManager.LoadScene("Overworld");
         }
@@ -162,6 +165,15 @@ public class GameSession : MonoBehaviour
     private void OnApplicationQuit()
     {
         SaveGame();
+    }
+
+    public void ShowUI()
+    {
+        deathText.gameObject.SetActive(true);
+    }
+    public void HideUI()
+    {
+        deathText.gameObject.SetActive(false);
     }
 
 }

@@ -5499,7 +5499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[1]
-      value: I don't recognize you...
+      value: To be quite frank, hehe..., I don't recognize you...
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[2]
@@ -5507,8 +5507,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[3]
-      value: 'I think I remember now. There was this small mysterious person with
-        a cape. '
+      value: 'Frankly, I think I remember now. There was this small mysterious person
+        with a cape. '
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[4]
@@ -5524,12 +5524,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[7]
-      value: You must stop him Clemens. There is a portal to the shadow realm mansion,
-        somewhere, but it's deactivated.
+      value: You must stop him Clemens. To be real with you, I there is a portal
+        to the shadow realm mansion, somewhere, but it's deactivated.
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[8]
-      value: You will need 7 crystals in order to unlock it.
+      value: Frankly, You will need 7 crystals in order to unlock it.
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[9]

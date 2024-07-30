@@ -10,7 +10,13 @@ public class GameSession : MonoBehaviour
     [SerializeField] GameObject dogInfoPanel;
     [SerializeField] GameObject crystalInfoPanel;
 
+    [Header("File Storage Config")]
+    [SerializeField] private string fileName;
+    [SerializeField] private bool useEncryption;
+    private string selectedProfileId = "test";
+
     private GameStateInfo gameStateInfo;
+    private FileDataHandler dataHandler;
 
     private void Awake()
     {
@@ -24,11 +30,10 @@ public class GameSession : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
     }
     private void Start()
     {
-        gameStateInfo = new GameStateInfo();
-        UnlockAnimal("dog");
         deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
     }
 
@@ -71,6 +76,7 @@ public class GameSession : MonoBehaviour
         crystalInfoPanel.SetActive(true);
         gameStateInfo.UnlockedCrystals.Add(crystal);
     }
+
     public void HideCrystalInfoPanel()
     {
         crystalInfoPanel.SetActive(false);
@@ -91,6 +97,7 @@ public class GameSession : MonoBehaviour
     {
         gameStateInfo.CompletedLevels.Add(name);
     }
+
     public void UnlockAnimal(string animalName)
     {
         gameStateInfo.UnlockedAnimals.Add(animalName);
@@ -107,6 +114,54 @@ public class GameSession : MonoBehaviour
             default:
                 return false;
         };
+    }
+
+    public void NewGame()
+    {
+        gameStateInfo = new GameStateInfo();
+    }
+
+    public void LoadGame()
+    {
+        gameStateInfo = dataHandler.Load(selectedProfileId);
+
+        // start a new game if the data is null and we're configured to initialize data for debugging purposes
+        if (gameStateInfo == null)
+        {
+            NewGame();
+        }
+        else
+        {
+            deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
+            SceneManager.LoadScene("Overworld");
+        }
+
+        // if no data can be loaded, don't continue
+        if (gameStateInfo == null)
+        {
+            Debug.LogWarning("No data was found. A New Game needs to be started before data can be loaded.");
+            return;
+        }
+    }
+
+    public void SaveGame()
+    {
+        // if we don't have any data to save, log a warning here
+        if (gameStateInfo == null)
+        {
+            Debug.LogWarning("No data was found. A New Game needs to be started before data can be saved.");
+            return;
+        }
+
+        // timestamp the data so we know when it was last saved
+        gameStateInfo.lastUpdated = System.DateTime.Now.ToBinary();
+        // save that data to a file using the data handler
+        dataHandler.Save(gameStateInfo, selectedProfileId);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
     }
 
 }

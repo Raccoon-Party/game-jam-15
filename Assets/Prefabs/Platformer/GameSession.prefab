@@ -659,6 +659,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathText: {fileID: 4980916542596275122}
   dogInfoPanel: {fileID: 6140580471878050151}
+  crystalInfoPanel: {fileID: 2635932169054744214}
+  fileName: 
+  useEncryption: 0
 --- !u!1 &1316199664091546308
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,11 +34,13 @@ public class PauseManager : MonoBehaviour
 
     public void Save()
     {
-        Debug.Log("Save");
+        FindObjectOfType<GameSession>().SaveGame();
+        Resume();
     }
 
     public void MainMenu()
     {
+        Save();
         Resume();
         SceneManager.LoadScene("MainMenu");
     }

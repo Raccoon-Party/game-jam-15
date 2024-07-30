@@ -1,15 +1,17 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class GameStateInfo
 {
-    public int deathCounter { get; set; }
-    public Vector2 OverworldPosition { get; set; }
-    public List<string> CompletedLevels { get; set; }
-    public List<string> UnlockedAnimals { get; set; }
-    public List<string> UnlockedCrystals { get; set; }
-    public int Money { get; set; }
+    public long lastUpdated;
+    public int deathCounter;
+    public Vector2 OverworldPosition;
+    public List<string> CompletedLevels;
+    public List<string> UnlockedAnimals;
+    public List<string> UnlockedCrystals;
+    public int Money;
     public GameStateInfo()
     {
         CompletedLevels = new List<string>();
@@ -17,7 +19,7 @@ public class GameStateInfo
         UnlockedCrystals = new List<string>();
         Money = 0;
         deathCounter = 0;
-        OverworldPosition = new Vector2(-8.0f, 0.1f);
+        OverworldPosition = _defaultPosition;
     }
     public static Vector2 _defaultPosition = new Vector2(-8.0f, 0.1f);
 }

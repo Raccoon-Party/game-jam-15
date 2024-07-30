@@ -12060,14 +12060,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSession
       objectReference: {fileID: 0}
-    - target: {fileID: 6140580471878050151, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6184737479036807757, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
-      propertyPath: crystalInfoPanel
-      value: 
-      objectReference: {fileID: 501627330}
     - target: {fileID: 7796144527883125284, guid: 1451d99329149a34c9add9f287d2e18c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.9

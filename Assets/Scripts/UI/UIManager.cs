@@ -7,7 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public void StartGame()
     {
+        FindObjectOfType<GameSession>().NewGame();
         SceneManager.LoadScene("Overworld");
+    }
+
+    public void LoadGame()
+    {
+        FindObjectOfType<GameSession>().LoadGame();
     }
 
     public void QuitGame()

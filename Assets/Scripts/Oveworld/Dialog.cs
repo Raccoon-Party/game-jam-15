@@ -6,6 +6,8 @@ using UnityEngine;
 [System.Serializable]
 public class Dialog
 {
+    public string SpeakerName;
+    public Sprite SpeakerSprite;
     [SerializeField] List<string> lines;
 
     public List<string> Lines

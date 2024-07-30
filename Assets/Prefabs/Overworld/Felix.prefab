@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3098446692796714418}
   - component: {fileID: 7047605475000201007}
   - component: {fileID: 2589785381872157060}
+  - component: {fileID: 2497794495967354352}
   m_Layer: 8
   m_Name: Felix
   m_TagString: Untagged
@@ -121,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog:
+    SpeakerName: Felix Longpaw
+    SpeakerSprite: {fileID: 521845140, guid: 81666d7f3903a194a8b169e604f1453c, type: 3}
     lines:
     - Hello There!
     - Can you believe it? I'm your roomate Felix Longpaw! I just turned into a fox!!
@@ -160,3 +163,48 @@ CapsuleCollider2D:
   m_Offset: {x: 0.004747609, y: -0.067247644}
   m_Size: {x: 0.49050468, y: 0.49050468}
   m_Direction: 0
+--- !u!61 &2497794495967354352
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3525383221008569533}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.009964913, y: 0.00830403}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5, y: 0.625}
+    newSize: {x: 0.5, y: 0.625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.9318159, y: 0.9405579}
+  m_EdgeRadius: 0

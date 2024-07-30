@@ -10,6 +10,10 @@ public class DialogManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI dialogText;
 
+    [SerializeField] TextMeshProUGUI speakerNameText;
+
+    [SerializeField] Image speakerSpriteImage;
+
     [SerializeField] int lettersPerSecond;
 
     public static DialogManager Instance { get; private set; }
@@ -27,7 +31,7 @@ public class DialogManager : MonoBehaviour
         Instance = this;
     }
 
-    public void HandleUpdate(Dialog dialog)
+    public bool HandleUpdate(Dialog dialog)
     {
         if (!isTyping)
         {
@@ -35,19 +39,23 @@ public class DialogManager : MonoBehaviour
             {
                 StartCoroutine(ShowDialog(dialog));
                 currentLine++;
+                return false;
             }
             else if (currentLine < dialog.Lines.Count)
             {
                 StartCoroutine(TypeDialog(dialog.Lines[currentLine]));
                 currentLine++;
+                return false;
             }
             else
             {
                 dialogBox.SetActive(false);
                 currentLine = 0;
                 OnHideDialog?.Invoke();
+                return true;
             }
         }
+        return false;
     }
 
     public IEnumerator ShowDialog(Dialog dialog)
@@ -57,6 +65,10 @@ public class DialogManager : MonoBehaviour
         OnShowDialog?.Invoke();
 
         dialogBox.SetActive(true);
+
+        speakerNameText.text = dialog.SpeakerName;
+        speakerSpriteImage.sprite = dialog.SpeakerSprite;
+
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
 

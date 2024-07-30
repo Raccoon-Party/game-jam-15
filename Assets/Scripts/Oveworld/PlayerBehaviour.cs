@@ -48,7 +48,14 @@ public class PlayerBehaviour : MonoBehaviour
         var collider = Physics2D.OverlapCircle(transform.position, 0.2f, interactablesLayer);
         if (collider != null)
         {
-            collider.GetComponent<Interactables>()?.Interact();
+            var interactable = collider.GetComponent<Interactables>();
+            interactable?.Interact();
+
+            var npcBehaviour = collider.GetComponent<NpcBehaviour>();
+            if (npcBehaviour != null)
+            {
+                npcBehaviour.FacePlayer(transform.position);
+            }
         }
     }
 

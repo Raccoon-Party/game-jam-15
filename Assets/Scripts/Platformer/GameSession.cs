@@ -35,7 +35,6 @@ public class GameSession : MonoBehaviour
     private void Start()
     {
         deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
-        UnlockAnimal("dog");
     }
 
     private void Update()

@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     GameState state;
 
     bool isInOverworld => SceneManager.GetActiveScene().buildIndex == SceneManager.GetSceneByName("Overworld").buildIndex;
+    bool isInHome => SceneManager.GetActiveScene().buildIndex == SceneManager.GetSceneByName("Home").buildIndex;
 
     public void Start()
     {
@@ -36,7 +37,7 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        if (isInOverworld)
+        if (isInOverworld || isInHome)
         {
             switch (state)
             {

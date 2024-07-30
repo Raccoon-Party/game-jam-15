@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 public class PlayerBehaviour : MonoBehaviour
 {
     PlayerInput playerInput;
@@ -16,6 +17,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     public LayerMask interactablesLayer;
 
+    bool isInOverworld => SceneManager.GetActiveScene().buildIndex == SceneManager.GetSceneByName("Overworld").buildIndex;
+    bool isInHome => SceneManager.GetActiveScene().buildIndex == SceneManager.GetSceneByName("Home").buildIndex;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         var gameSession = FindObjectOfType<GameSession>();
-        if (gameSession != null && gameSession != default)
+        if (gameSession != null && gameSession != default && isInOverworld)
             transform.position = gameSession.GetSavedOverworldPosition();
     }
 

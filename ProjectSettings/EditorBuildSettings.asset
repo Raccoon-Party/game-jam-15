@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlatformerShadowLevel2.unity
     guid: 12a6e7ba20115c340945c9ec207ea1fe
+  - enabled: 1
+    path: Assets/Scenes/Home.unity
+    guid: ddebe142eb532624a85a6e698d020a3f
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c489c5cb794c13647af1a5d01550e71e, type: 2}

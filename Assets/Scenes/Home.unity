@@ -5524,8 +5524,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[7]
-      value: You must stop him Clemens. To be real with you, I there is a portal
-        to the shadow realm mansion, somewhere, but it's deactivated.
+      value: You must stop him Clemens. To be real with you, I think there is a portal
+        to the shadow realm mansion somewhere, but it's deactivated.
       objectReference: {fileID: 0}
     - target: {fileID: 7047605475000201007, guid: d7c286ac7e444254d9e482f01bdc5cea, type: 3}
       propertyPath: dialog.lines.Array.data[8]

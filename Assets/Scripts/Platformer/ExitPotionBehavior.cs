@@ -30,6 +30,7 @@ public class ExitPotionBehavior : MonoBehaviour
         Time.timeScale = 1;
         if (SceneManager.GetSceneByName(nextLevel) != null)
         {
+            FindObjectOfType<AudioBehavior>().DestroyAudio();
             SceneManager.LoadScene(nextLevel);
         }
     }

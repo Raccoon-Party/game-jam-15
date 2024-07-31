@@ -17,6 +17,7 @@ public class SceneController : MonoBehaviour, Interactables
         else
         {
             FindObjectOfType<GameSession>().SaveOverworldPosition(FindObjectOfType<PlayerBehaviour>().transform.position);
+            FindObjectOfType<AudioBehavior>().DestroyAudio();
             SceneManager.LoadScene(sceneName);
             Debug.Log("Load Level" + sceneName);
         }

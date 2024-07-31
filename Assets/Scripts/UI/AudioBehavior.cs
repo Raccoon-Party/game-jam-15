@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class AudioBehavior : MonoBehaviour
 {
@@ -9,26 +6,18 @@ public class AudioBehavior : MonoBehaviour
 
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().name == sceneName)
+        int numSessions = FindObjectsOfType<AudioBehavior>().Length;
+        if (numSessions > 1)
         {
-            int numSessions = FindObjectsOfType<AudioBehavior>().Length;
-            if (numSessions > 1)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                DontDestroyOnLoad(gameObject);
-            }
+            Destroy(gameObject);
         }
         else
-            Destroy(gameObject);
-    }
-    private void Update()
-    {
-        if (SceneManager.GetActiveScene().name != sceneName)
         {
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
+    }
+    public void DestroyAudio()
+    {
+        Destroy(gameObject);
     }
 }

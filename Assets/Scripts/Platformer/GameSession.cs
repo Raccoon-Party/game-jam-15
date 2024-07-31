@@ -119,6 +119,7 @@ public class GameSession : MonoBehaviour
     public void NewGame()
     {
         gameStateInfo = new GameStateInfo();
+        FindObjectOfType<AudioBehavior>().DestroyAudio();
         ShowUI();
     }
 
@@ -135,6 +136,7 @@ public class GameSession : MonoBehaviour
         {
             ShowUI();
             deathText.SetText($"Deaths: {gameStateInfo.deathCounter}");
+            FindObjectOfType<AudioBehavior>().DestroyAudio();
             SceneManager.LoadScene("Overworld");
         }
 

@@ -25,6 +25,7 @@ public class ExitPortalBehavior : MonoBehaviour
         yield return new WaitForSecondsRealtime(levelLoadDelay);
         if (SceneManager.GetSceneByName(nextLevel) != null)
         {
+            FindObjectOfType<AudioBehavior>().DestroyAudio();
             SceneManager.LoadScene(nextLevel);
         }
     }

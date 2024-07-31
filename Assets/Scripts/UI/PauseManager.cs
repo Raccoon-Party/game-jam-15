@@ -43,6 +43,7 @@ public class PauseManager : MonoBehaviour
         Save();
         Resume();
         FindObjectOfType<GameSession>().HideUI();
+        FindObjectOfType<AudioBehavior>().DestroyAudio();
         SceneManager.LoadScene("MainMenu");
     }
 
